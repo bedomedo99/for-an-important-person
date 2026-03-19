@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الفنانة واحده بس </title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Segoe UI', sans-serif;
+            background: #1a1a2e; /* لون غامق للبداية */
+        }
+
+        /* شاشة البداية */
+        #welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #2c3e50, #000);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: transform 1s ease-in-out, opacity 0.8s;
+        }
+
+        .btn-open {
+            padding: 15px 40px;
+            font-size: 1.8rem;
+            color: white;
+            background: linear-gradient(45deg, #e67e22, #f1c40f);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(230, 126, 34, 0.6);
+            transition: 0.3s;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* الصفحة الرئيسية بعد الضغط */
+        #main-content {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            opacity: 0;
+            transition: opacity 1.5s;
+        }
+
+        .card {
+            text-align: center;
+            padding: 50px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            transform: translateY(50px);
+            transition: 1s ease-out;
+        }
+
+        .card.show {
+            transform: translateY(0);
+        }
+
+        h1 { color: #2c3e50; font-size: 3.5rem; margin: 0; }
+        p { font-size: 1.5rem; color: #34495e; }
+
+        /* البلالين */
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            font-size: 2rem;
+            z-index: 5;
+            animation: fly 6s linear forwards;
+        }
+
+        @keyframes fly {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-110vh) rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="welcome-screen">
+        <h2 style="color: white; margin-bottom: 20px;">هل ندي الفنانة الوحيدة ؟</h2>
+        <button class="btn-open" onclick="revealSurprise()"> نعم ✨</button>
+    </div>
+
+    <div id="main-content">
+        <div class="card" id="eid-card">
+            <h1>عيدكم مبارك! 🌙</h1>
+            <p>كل سنه وانتي طيبة وبخير وصحة وسلامة يا صحبي</p>
+            <h2 style="color: #e67e22;"> from tesho to nudd </h2>
+        </div>
+    </div>
+
+    <script>
+        function revealSurprise() {
+            // إخفاء شاشة البداية
+            const welcome = document.getElementById('welcome-screen');
+            welcome.style.opacity = '0';
+            welcome.style.transform = 'scale(2)';
+            setTimeout(() => welcome.style.display = 'none', 1000);
+
+            // إظهار المحتوى
+            const main = document.getElementById('main-content');
+            main.style.opacity = '1';
+            
+            setTimeout(() => {
+                document.getElementById('eid-card').classList.add('show');
+            }, 500);
+
+            // البدء في إطلاق البلالين
+            setInterval(createBalloon, 400);
+        }
+
+        function createBalloon() {
+            const icons = ['🎈', '🎊', '✨', '🌸', '🍬'];
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.innerText = icons[Math.floor(Math.random() * icons.length)];
+            
+            balloon.style.left = Math.random() * 100 + "vw";
+            const duration = Math.random() * 3 + 4;
+            balloon.style.animationDuration = duration + "s";
+            
+            document.body.appendChild(balloon);
+            setTimeout(() => balloon.remove(), duration * 1000);
+        }
+    </script>
+</body>
+</html>
