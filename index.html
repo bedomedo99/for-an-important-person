@@ -12,10 +12,10 @@
             height: 100%;
             overflow: hidden;
             font-family: 'Segoe UI', sans-serif;
-            background: #1a1a2e; /* لون غامق للبداية */
+            background: #1a1a2e; 
         }
 
-        /* شاشة البداية */
+        
         #welcome-screen {
             position: fixed;
             top: 0;
@@ -50,7 +50,7 @@
             100% { transform: scale(1); }
         }
 
-        /* الصفحة الرئيسية بعد الضغط */
+        
         #main-content {
             height: 100vh;
             display: flex;
@@ -78,7 +78,7 @@
         h1 { color: #2c3e50; font-size: 3.5rem; margin: 0; }
         p { font-size: 1.5rem; color: #34495e; }
 
-        /* البلالين */
+       
         .balloon {
             position: absolute;
             bottom: -100px;
@@ -103,21 +103,21 @@
 
     <div id="main-content">
         <div class="card" id="eid-card">
-            <h1>عيدكم مبارك! 🌙</h1>
-            <p>كل سنه وانتي طيبة وبخير وصحة وسلامة يا صحبي</p>
+            <h1>عيد سعيد عليكييي 🌙</h1>
+            <p>وكل سنه وانتي طيبة وبخير وصحة وسلامة يا فنانه </p>
             <h2 style="color: #e67e22;"> from tesho to nudd </h2>
         </div>
     </div>
 
     <script>
         function revealSurprise() {
-            // إخفاء شاشة البداية
+           
             const welcome = document.getElementById('welcome-screen');
             welcome.style.opacity = '0';
             welcome.style.transform = 'scale(2)';
             setTimeout(() => welcome.style.display = 'none', 1000);
 
-            // إظهار المحتوى
+          
             const main = document.getElementById('main-content');
             main.style.opacity = '1';
             
@@ -125,7 +125,7 @@
                 document.getElementById('eid-card').classList.add('show');
             }, 500);
 
-            // البدء في إطلاق البلالين
+           
             setInterval(createBalloon, 400);
         }
 
